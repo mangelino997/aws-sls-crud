@@ -6,7 +6,8 @@
 		"format": "prettier --write .",
 		"lint-check": "eslint src",
 		"lint": "eslint --fix . --ext .js,.jsx",
-		"sls:dev": "sls offline --stage develop --region us-west-2"
+		"sls:dev": "sls offline --stage develop --region us-west-2",
+		"prepare": "husky install"
 	},
 	"author": "",
 	"license": "ISC",
@@ -34,13 +35,13 @@
 	},
 	"lint-staged": {
 		"*.js": [
-		  "npm run lint",
-		  "git add"
+			"npm run lint",
+			"git add"
 		]
-	  },
+	},
 	"husky": {
 		"hooks": {
-		  "pre-commit": "lint-staged"
+			"pre-commit": "lint-staged"
 		}
-	  }
+	}
 }
