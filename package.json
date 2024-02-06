@@ -7,7 +7,7 @@
 		"lint-check": "eslint src",
 		"lint": "eslint --fix . --ext .js,.jsx",
 		"sls:dev": "sls offline --stage develop --region us-west-2",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"author": "",
 	"license": "ISC",

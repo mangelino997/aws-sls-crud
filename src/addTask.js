@@ -10,7 +10,6 @@ const addTask = async event => {
 	// const dynamoDBService = new DynamoDBService();
 
 	try {
-		const b = 234;
 		const { title, description } = event.body;
 		const createdAt = new Date().toISOString();
 		const id = v4();
