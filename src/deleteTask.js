@@ -1,4 +1,4 @@
-import { TABLE_NAME } from 'common/const';
+const { TABLE_NAME } = require('./common/const');
 const AWS = require('aws-sdk');
 
 const deleteTask = async event => {
