@@ -35,10 +35,7 @@
 		"serverless-offline": "^13.3.3"
 	},
 	"lint-staged": {
-		"*.js": [
-			"npm run lint",
-			"git add"
-		]
+		"*.js": []
 	},
 	"husky": {
 		"hooks": {
