@@ -1,5 +1,5 @@
-// const DynamoDBService = require('./dynamoDBService');
-// const { TABLE_NAME } = require('common/const');
+const { TABLE_NAME } = require('./common/const');
+const DynamoDBService = require('./database/dynamoDBService');
 const { v4 } = require('uuid');
 const middy = require('@middy/core');
 const validator = require('@middy/validator');
@@ -7,7 +7,7 @@ const httpErrorHandler = require('@middy/http-error-handler');
 const httpJSONBodyParser = require('@middy/http-json-body-parser');
 
 const addTask = async event => {
-	// const dynamoDBService = new DynamoDBService();
+	const dynamoDBService = new DynamoDBService();
 
 	try {
 		const { title, description } = event.body;
@@ -21,7 +21,7 @@ const addTask = async event => {
 			createdAt,
 		};
 
-		// await dynamoDBService.put(newTask, TABLE_NAME);
+		await dynamoDBService.put(newTask, TABLE_NAME);
 		console.log(newTask);
 		return {
 			status: 200,

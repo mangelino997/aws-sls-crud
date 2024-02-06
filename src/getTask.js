@@ -1,6 +1,5 @@
-// getTask.js
-const DynamoDBService = require('./dynamoDBService');
-const { TABLE_NAME } = require('common/const');
+const { TABLE_NAME } = require('./common/const');
+const DynamoDBService = require('./database/dynamoDBService');
 
 const getTask = async event => {
 	const dynamoDBService = new DynamoDBService();

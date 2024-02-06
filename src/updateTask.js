@@ -1,6 +1,5 @@
-// updateTask.js
-const DynamoDBService = require('./dynamoDBService');
-const { TABLE_NAME } = require('common/const');
+const { TABLE_NAME } = require('./common/const');
+const DynamoDBService = require('./database/dynamoDBService');
 
 const middy = require('@middy/core');
 const validator = require('@middy/validator');

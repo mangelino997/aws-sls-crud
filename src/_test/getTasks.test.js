@@ -1,16 +1,21 @@
 const { getTasks } = require('../getTasks');
+const DynamoDBService = require('../database/dynamoDBService');
 
-// mock para dynamoDBService
-// jest.mock('../database/dynamoDBService', () => ({
-// 	scan: jest.fn().mockReturnValue({
-// 		Items: [{ id: '1234', name: 'example' }],
-// 	}),
-// }));
+// Mock para DynamoDBService
+jest.mock('../database/dynamoDBService', () => {
+	return jest.fn().mockImplementation(() => ({
+		scan: jest.fn().mockResolvedValue({ Items: [{ id: '1', name: 'Task 1' }] }),
+	}));
+});
 
 describe('getTasks function', () => {
 	it('should return tasks successfully', async () => {
-		const tasks = await getTasks();
-		expect(tasks.status).toBe(200);
-		expect(tasks.body.tasks).toHaveLength(1);
+		const response = await getTasks();
+
+		expect(DynamoDBService).toHaveBeenCalledTimes(1);
+		expect(response.status).toBe(200);
+		expect(response.body.tasks).toHaveLength(1);
+		expect(response.body.tasks[0]).toHaveProperty('id', '1');
+		expect(response.body.tasks[0]).toHaveProperty('name', 'Task 1');
 	});
 });

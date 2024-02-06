@@ -4,13 +4,14 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  lambdaHashingVersion: '20201221'
   region: us-west-2
-  # iamRoleStatements:
-  #   - Effect: Allow
-  #     Action:
-  #       - dynamodb.*
-  #     Resource:
-  #       - arn:
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-2:139181118930:table/taskTable
 
 functions:
   api:
@@ -49,18 +50,18 @@ functions:
       - httpApi:
           path: /tasks/{id}
           method: delete
-# resources:
-#   Resources:
-#     tasksTables:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: taskTable
-#         AttributeDefinitions:
-#           - AttributeName: id
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: id
-#             KeyType: HASH
-
-plugins:
-  - serverless-offline
+resources:
+  Resources:
+    tasksTables:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: taskTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+# plugins:
+#   - serverless-offline
